@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		用户名<input type="text">
+		密码<input type="text">
+		<input type="button" value="登录" />
+		<script src="jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("input").eq(2).click(function(){
+					var data = {
+						name:$("input").eq(0).val(),
+						password:$("input").eq(1).val()
+					}
+					$.post("http://47.104.244.134:8080/userlogin.do",data,function(data){
+						//console.log(data);
+						if(data.code==0){
+							$.cookie("token",data.data.token,{expires:7});
+							//location.href = "index.html";
+							
+						}
+					})
+				})
+			})
+		</script>
+	</body>
+</html>

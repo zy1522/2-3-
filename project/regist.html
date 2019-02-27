@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		用户名<input type="text" />
+		密码<input type="text" />
+		邮箱<input type="text" />
+		性别<input type="text" />
+		<input type="button" value="提交"/>
+			<a href="login.html">登录</a>
+			
+		<script type="text/javascript">
+			$(function(){
+				$("input").eq(4).click(function(){
+					var data={username:$("input").eq(0).val(),
+								password:$("input").eq(1).val(),
+								email:$("input").eq(2).val(),
+								sex:$("input").eq(3).val()}
+					$.post("http://47.104.244.134:8080/usersave.do",data,function(){
+						console.log(data,1)
+					})
+				
+				})
+			})
+			
+			
+		</script>
+	</body>
+</html>

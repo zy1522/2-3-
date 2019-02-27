@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>列表</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="list"></div>
+		<script type="text/javascript">
+			$(function(){
+				$.get("http://47.104.244.134:8080/goodsbytid.do",{tid:13,page:1,limit:10},function(data){
+					/**/
+					data = data.data;
+					var str = "";
+					for(var i = 0; i < data.length; i++){
+						str += `<li><img src="${data[i].picurl}"><p><a href="detail.html?id=${data[i].id}">${data[i].name}</a></p><p>${data[i].price/100}</p></li>`
+					}
+					$("#list").html(str);
+				})
+			})
+		</script>
+	</body>
+</html>

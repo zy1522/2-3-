@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<ul id="cartList"></ul>
+		<script src="jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var token = $.cookie("token");
+				$.get("http://47.104.244.134:8080/cartlist.do",{token:token},function(data){
+					var str = "";
+					//console.log(data);
+					for(var i = 0; i < data.length; i++){
+						str += `<li><img src="${data[i].goods.picurl}"><span>${data[i].goods.name}</span><span>${data[i].goods.price}</span><span>${data[i].count}</span></li>`;
+					}
+					$("#cartList").html(str);
+				})
+			})
+		</script>
+	</body>
+</html>
